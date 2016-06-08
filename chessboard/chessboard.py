@@ -31,41 +31,10 @@ Return N lines each containing M characters with the chessboard pattern. Empty s
 
 
 def chessboard(s):
-    """
-    :param s: the string contains N row and M column, separated by whitespace
-    :type s: str
-    """
-    if not s:
-        return ""
-    nums = s.split(" ")
-    if len(nums) <= 1 or len(nums) > 2:
-        return ""
+    row, column = map(int, s.split(" "))
+    pattern = "*." * column
+    return "\n".join([pattern[1: column + 1] if i % 2 else pattern[: column] for i in range(row)])
 
-    row = int(nums[0])
-    column = int(nums[1])
-
-    if not row or not column:
-        return ""
-
-    ret = []
-
-    ret = ["\n" for i in range(row * (column + 1))]
-
-    values = {".": "*", "*": "."}
-    first = "*"
-    column += 1
-    for n in range(row):
-        for m in range(column):
-            if m == column - 1:
-                continue
-            if n - 1 >= 0:
-                ret[n*column + m] = values[ret[(n - 1) * column + m]]
-            elif m - 1 >= 0:
-                ret[n*column + m] = values[ret[n * column + (m - 1)]]
-            else:
-                ret[n*column + m] = first
-
-    return "".join(ret)[:-1]
 
 
 
