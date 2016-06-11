@@ -14,3 +14,4 @@ def tribonacci(signature, n):
         signature.append(sum(signature[i:3 + i]))
 
     return signature[:n]
+
