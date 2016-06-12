@@ -11,7 +11,7 @@ def tribonacci(signature, n):
     """
 
     for i in range(n):
-        signature.append(sum(signature[i:3 + i]))
+        signature.append(sum(signature[:-3]))
 
     return signature[:n]
 
