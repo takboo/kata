@@ -37,10 +37,5 @@ Finally, take that sum and divide it by 10. If the remainder equals zero, the or
 
 def validate(n):
     digitlist = [int(i) for i in list(str(n))]
-    digitlist.reverse()
-    digitlist = [digitlist[i] if (i + 1) % 2 else digitlist[i] * 2 for i in range(len(digitlist))]
-    digitlist.reverse()
-    digitlist = [(i - 9) if i > 9 else i for i in digitlist]
-    if sum(digitlist) % 10 == 0:
-        return True
-    return False
+    digitlist[-2::-2] = [(i*2 - 9) if i*2 > 9 else i*2 for i in digitlist[-2::-2]]
+    return sum(digitlist) % 10 == 0
